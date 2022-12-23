@@ -1,13 +1,28 @@
+/*
+* Colores
+*/
+:root{
+  --primary-color : #F25C05;
+  --primary-color-alt : #E24C27;
+  --primary-color-light : #F27405;
+}
+
 html {
   scroll-behavior: smooth;
 }
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
+
+/* Custom button */
+.btn-secondary, .btn-secondary:hover{
+  background-color: var(--primary-color) ;
+  border: 1px solid var(--primary-color) ;
+  color: #FFF;
   text-shadow: none; /* Prevent inheritance from `body` */
 }
+.btn-secondary:hover{
+  background-color: var(--primary-color-alt) !important;
+  border: 1px solid var(--primary-color-alt) !important;
+}
+
 
 /*
  * Header
@@ -19,7 +34,7 @@ html {
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(136, 200, 255, 0.25);
+  border-bottom-color: rgba(242, 116, 5, 0.25);
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -28,7 +43,7 @@ html {
 
 .nav-masthead .active {
   color: rgb(255, 255, 255);
-  border-bottom-color: rgb(136, 200, 255);
+  border-bottom-color: var(--primary-color-light);
 }
 
 .nav-scroller .nav {
@@ -50,7 +65,7 @@ main{
 }
 
 .text-logo{
-  color: rgb(136, 200, 255);
+  color: var(--primary-color-light);
 }
 
 .cover{
