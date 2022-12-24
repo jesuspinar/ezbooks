@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    @GetMapping("/products-list")
+    private String goToProducts() {
+        return "/user/products-list";
+    }
 
-        @GetMapping("/products-list")
-        private String goToProducts(){
-            return "/user/products-list";
-        }
+    @GetMapping("/transactions")
+    private String goToTransactions() {
+        return "/user/transactions";
+    }
 }
