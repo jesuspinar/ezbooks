@@ -17,7 +17,6 @@ public class PrincipalController {
     private String goToLogin(){
         return "login";
     }
-
     @GetMapping("/register")
     private String goToRegister(){
         return "register";
