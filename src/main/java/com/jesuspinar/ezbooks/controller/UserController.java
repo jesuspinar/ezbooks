@@ -16,4 +16,10 @@ public class UserController {
     private String goToTransactions() {
         return "/user/transactions";
     }
+
+    @GetMapping("/upload")
+    private String goToUploadProduct(){
+        return "/user/upload";
+    }
+
 }

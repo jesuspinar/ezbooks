@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Ezbooks | Subir producto</title>
+    <meta th:replace="~{fragments/head}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar}"></div>
+<main class="container mx-auto">
+
+    <form class="row bg-body mx-auto my-lg-4 my-3" style="max-width: 760px" enctype="multipart/form-data" method="post"
+          action="#">
+        <h1 class="display-4">Subir producto</h1>
+
+        <div class="row mb-3">
+            <div class="col-lg">
+                <div class="mb-3">
+                    <label class="form-label" for="titulo">Título</label>
+                    <input type="text" class="form-control" id="titulo"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="autor">Autor</label>
+                    <input type="text" class="form-control" id="autor"/>
+                </div>
+            </div>
+            <div class="col-lg">
+                <label for="descripcion" class="form-label">Descripcion</label>
+                <textarea class="form-control" id="descripcion" rows="5-fixed"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3">
+                <label class="form-label" for="editorial">Editorial</label>
+                <input type="text" class="form-control mb-3" id="editorial"/>
+            </div>
+
+            <div class="col mb-3">
+                <label class="form-label" for="genero">Genero</label>
+                <input type="text" class="form-control" id="genero"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg col-sm mb-3">
+                <label class="form-label" for="precio">Precio</label>
+                <div class="input-group">
+                    <input type="text" id="precio" class="form-control text-end" aria-label="precio">
+                    <span class="input-group-text">.00 €</span>
+                </div>
+            </div>
+
+            <div class="col-lg col-sm mb-3">
+                <label for="imgProducto" class="form-label">Foto Portada</label>
+                <input class="form-control" type="file" id="imgProducto">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-secondary w-100 my-2">Continuar</button>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+<div th:replace="~{fragments/footer}"></div>
+</html>
