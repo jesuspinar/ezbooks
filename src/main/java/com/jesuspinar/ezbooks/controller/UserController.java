@@ -22,4 +22,10 @@ public class UserController {
         return "/user/upload";
     }
 
+    @GetMapping("/checkout")
+    private String goToCheckout(){
+        return "/user/checkout";
+    }
+
+
 }
