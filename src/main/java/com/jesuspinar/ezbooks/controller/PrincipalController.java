@@ -21,4 +21,9 @@ public class PrincipalController {
     private String goToRegister(){
         return "register";
     }
+
+    @GetMapping({"libros","books", "products"})
+    private String goToBooks(){
+        return "products";
+    }
 }
