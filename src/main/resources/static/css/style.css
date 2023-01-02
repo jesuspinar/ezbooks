@@ -7,6 +7,15 @@
   --primary-color-light : #F27405;
 }
 
+/*
+* Fuentes:
+* Georgia (encabezado)
+* Helvetica Nue (cuerpo)
+*/
+h1{
+  font-family:  Georgia, Didot;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -22,7 +31,6 @@ html {
   background-color: var(--primary-color-alt) !important;
   border: 1px solid var(--primary-color-alt) !important;
 }
-
 
 /*
  * Header
