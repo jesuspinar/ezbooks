@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<title>SecondHandMarket</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+	<nav th:replace="~{fragments/navbar}"></nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-1 col-md-8">
+				<div class="col-md-8">
+					<img src="https://placehold.it/1200x600?text=SIN%20IMAGEN"
+						th:src="${#strings.isEmpty(producto.imagen)} ? 'https://placehold.it/1200x600?text=SIN%20IMAGEN' : ${producto.imagen}"
+						class="img-responsive center-block" alt="Image">
+				</div>
+				<div class="col-md-4">
+					<div class="text-center">
+						<img
+							th:src="${#strings.isEmpty(producto.propietario.avatar)} ? @{http://api.adorable.io/avatars/140/{email}.png(email=${producto.propietario.email})} : ${producto.propietario.avatar}"
+							name="aboutme" width="140" height="140" class="img-circle">
+						<h5><span
+								th:text="${producto.propietario.nombre + ' ' + producto.propietario.apellidos}"></span><br>
+							<span th:text="${producto.propietario.email}"></span></h5>
+					</div>
+					<div>
+						<h3 th:text="${producto.nombre}"></h3>
+					</div>
+					<div class="pull-right">
+						<h4>
+							<strong th:text="${#numbers.formatCurrency(producto.precio)}"></strong>
+						</h4>
+					</div>
+					<a th:href="@{/app/carrito/add/{id}(id=${producto.id})}" 
+					type="button" class="btn btn-lg btn-success btn-product" sec:authorize="isAuthenticated()"
+								th:if="${#authentication.name != producto.propietario.email}">
+						<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Comprar
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<br>
+	<br>
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

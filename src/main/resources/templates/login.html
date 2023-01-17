@@ -6,28 +6,30 @@
 </head>
 <body>
 <main class="container pt-5">
-    <!-- Todo: place logo img here -->
-    <div class="row justify-content-center py-5 mx-auto">
-      <div class="col" style="max-width: 430px;">
 
-        <form class="p-4 p-md-4 border rounded-3 bg-light">
-          <h4 class="fs-1 fw-bold lh-1 mb-4 text-center">Iniciar sesión</h4>
+  <div class="row justify-content-center py-5 mx-auto">
+    <div class="col" style="max-width: 430px;">
 
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingEmail" placeholder="" />
-            <label for="floatingEmail">Correo electrónico</label>
-          </div>
+      <form class="p-4 p-md-4 border rounded-3 bg-light" id="loginform"
+            method="POST" role="form" th:action="@{/auth/login-post}">
 
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPwd" placeholder="" />
-            <label for="floatingPwd">Contraseña</label>
-          </div>
-          <button class="w-100 btn btn-lg btn-secondary" type="submit">Continuar</button>
-          <hr class="my-4" />
-          <small class="text-muted">¿Todavía no tienes una cuenta?<a href="/register"> Crea una aquí.</a></small>
-        </form>
-      </div>
+        <h4 class="fs-1 fw-bold lh-1 mb-4 text-center">Iniciar sesión</h4>
+
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" name="username" id="login-username" placeholder="" />
+          <label for="login-username">Correo electrónico</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="login-password" name="password" placeholder="" />
+          <label for="login-password">Contraseña</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-secondary" type="submit">Continuar</button>
+        <hr class="my-4" />
+        <small class="text-muted">¿Todavía no tienes una cuenta?<a th:href="@{/auth/register}"> Crea una aquí.</a></small>
+      </form>
     </div>
+  </div>
 </main>
 <div th:replace="~{fragments/footer}"></div>
 </body>

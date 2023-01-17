@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ezbooks | Finalizar compra </title>
+  <meta th:replace="~{fragments/head}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar}"></div>
+<main class="container pt-4 pt-lg-5">
+
+  <div th:if="${carrito == null}">
+    <h1 class="fs-1 fw-bold lh-1 mb-4 text-center">Finalizar compra</h1>
+    <h2 class="display-6">Aún no has selecionado ningún producto ...</h2>
+  </div>
+
+  <form class="row justify-content-center mx-auto mx-auto" style="max-width: 520px" th:unless="${carrito == null}"
+  th:action="@{/app/carrito/finalizar}">
+    <h1 class="fs-1 fw-bold lh-1 mb-4 text-center">Finalizar compra</h1>
+
+    <!--  Muestra el producto que seleccionado para compra, pasado por url -->
+    <div class="row border rounded-3 bg-light pt-3 px-4" id="product-container">
+
+      <h2 class="px-0 mb-3">Libros</h2>
+      <!-- TODO:  <input th:text="${producto.propietario.email}">-->
+
+      <div class="row mx-auto mb-3 bg-white border rounded-3 align-items-center pe-0" style="height: 41px" th:each="producto : ${carrito}">
+        <div class="col-6 px-1 ellipsis-auto">
+          <span id="libro-titulo" th:text="${producto.nombre}">Título</span>
+        </div>
+        <div class="col-6 text-end pe-0 fs-6 border-start">
+          <label for="total" class="small">Precio</label>:
+          <span id="total" class="small" th:text="${#numbers.formatCurrency(producto.precio)}"></span>
+          <a class="text-decoration-none text-white ms-1 p-2 rounded-end bg-secondary bg-opacity-50"
+             th:href="@{/app/carrito/eliminar/{id}(id=${producto.id})}">&#10005;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row border rounded-3 bg-light pt-2 mt-3">
+      <div class="col">
+        <h2>Subtotal</h2>
+      </div>
+      <div class="col text-end">
+        <h2 th:text="${#numbers.formatCurrency(total_carrito)}"></h2>
+      </div>
+    </div>
+
+    <hr class="my-4 w-50"/>
+
+    <!-- Metodo ficticio de pago -->
+    <div class="row border rounded-3 bg-light pt-3 px-0" id="payment-container">
+      <div class="row mx-auto mb-5">
+        <div class="col">
+          <h2>Tarjeta</h2>
+        </div>
+        <div class="col text-end">
+          <span class="d-inline"><svg class="bi bi-shield-lock-fill" fill="#459b4a" height="23" viewBox="0 0 16 16" width="23" xmlns="http://www.w3.org/2000/svg"><path d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z" fill-rule="evenodd"/></svg></span>
+          <span class="fw-semibold">seguro</span>
+        </div>
+      </div>
+      <div class="row mx-auto">
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text"><svg class="bi bi-credit-card-2-back-fill" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/></svg></span>
+            <input class="form-control" id="numTarjeta" placeholder="Card number" type="text"/>
+            <input class="form-control text-end" id="mmyy" placeholder="MM/YY" style="max-width: 100px" type="text"/>
+            <input class="form-control text-end" id="cvc" placeholder="CVC" style="max-width: 80px" type="text"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4 w-50"/>
+
+    <!-- Contenedor que almacena la direccion -->
+    <div class="row border rounded-3 bg-light pt-3 px-0" id="direction-container">
+
+      <h2 class="ps-4 mb-3">Dirección</h2>
+      <div class="row mx-auto mb-0">
+        <div class="col">
+          <div class="form-floating">
+            <input class="form-control" id="direccion" placeholder="" type="email"/>
+            <label class="text-muted" for="direccion">Calle, Número, Piso, Puerta</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mx-auto mt-0 mb-3 g-3 px-3">
+        <div class="col">
+          <div class="form-floating">
+            <input class="form-control" id="ciudad" placeholder="" type="text"/>
+            <label class="text-muted" for="ciudad">Ciudad</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input class="form-control" id="postal" placeholder="" type="text"/>
+            <label class="text-muted" for="postal">Código</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input class="form-control" id="pais" placeholder="" type="text"/>
+            <label class="text-muted" for="pais">País</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4 w-50"/>
+
+    <div class="row mx-auto" id="submit-container">
+      <button class="w-100 btn btn-lg btn-secondary" type="submit" >Continuar</button>
+    </div>
+  </form>
+</main>
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

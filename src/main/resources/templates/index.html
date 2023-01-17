@@ -1,119 +1,99 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Ezbooks | Inicio</title>
-    <meta th:replace="~{fragments/head}">
+  <title>Ezbooks | Inicio</title>
+  <meta th:replace="~{fragments/head}">
 </head>
 <body>
 <div th:replace="~{fragments/navbar}"></div>
-<main>
-    <div class="cover p-lg-4">
-        <!-- HOME SECTION -->
-        <section id="home" class="py-5 text-center">
-            <div class="container">
-                <h1 class="display-5 fw-bold text-white">Ezbooks</h1>
-                <p class="lead text-light me-4">Una gran variedad de libros te espera aquí</p>
-            </div>
-        </section>
+<main class="w-100">
+  <div class="cover p-lg-4">
+    <!-- HOME SECTION -->
+    <section class="py-5 text-center" id="home">
+      <div class="container">
+        <h1 class="display-5 fw-bold text-white">Ezbooks</h1>
+        <p class="lead text-light me-4">Una gran variedad de libros te espera aquí</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- TOP SELLS PRODUCTS SECTION -->
+  <section class="py-5 bg-light" id="#">
+    <div class="text-center">
+      <h4 class="display-5 fw-bold lh-1 mb-4">Top ventas</h4>
     </div>
+    <div class="container">
+      <div class="row gap-2 gap-lg-3 g-2">
 
-    <!-- TOP SELLS PRODUCTS SECTION -->
-    <section id="#" class="py-5 bg-light">
-        <div class="text-center">
-            <h4 class="display-5 fw-bold lh-1 mb-4">Top ventas</h4>
-        </div>
-
-        <div class="row gap-2 gap-lg-3 justify-content-center">
-
+        <div class="col" th:each="producto : ${productosVendidos} ">
+          <div class="row justify-content-center">
             <!-- ITEM CARD -->
-            <div class="card mb-3 mx-0" style="max-width: 440px;">
-                <div class="row g-0">
-                    <div class="col-4 my-3">
-                        <img src="img/def.png" class="card-img h-100" alt="Portada libro">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body pe-0">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as ...</p>
-                            <p class="card-text fw-light">Precio: <span>4€</span></p>
-                            <a href="" class="btn btn-secondary w-100">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ITEM CARD -->
-            <div class="card mb-3 mx-0" style="max-width: 440px;">
-                <div class="row g-0">
-                    <div class="col-4 my-3">
-                        <img src="img/def.png" class="card-img h-100" alt="Portada libro">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body pe-0">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as ...</p>
-                            <p class="card-text fw-light">Precio: <span>4€</span></p>
-                            <a href="" class="btn btn-secondary w-100">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ITEM CARD -->
-            <div class="card mb-3 mx-0" style="max-width: 440px;">
-                <div class="row g-0">
-                    <div class="col-4 my-3">
-                        <img src="img/def.png" class="card-img h-100" alt="Portada libro">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body pe-0">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as ...</p>
-                            <p class="card-text fw-light">Precio: <span>4€</span></p>
-                            <a href="" class="btn btn-secondary w-100">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- LAST PRODUCT -->
-        </div>
-    </section>
+            <div class="card mb-3 panel-producto" style="max-width: 430px;">
+              <div class="row g-0">
 
-    <!-- REGISTER SECTION -->
-    <section id="subscribe">
-        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-            <div class="row align-items-center g-lg-5 py-5">
-                <div class="col-lg-7 text-center text-lg-start">
-                    <h4 class="display-4 fw-bold lh-1 mb-3">Benefíciate</h4>
-                    <p class="col-lg-10 fs-4">
-                        Registrate aquí mismo y descubre las ventajas de ser un nuevo usuario.
+                <div class="col-4 my-3 ps-0">
+                  <img alt="Portada libro" class="card-img h-100" src=""
+                       th:src="${#strings.isEmpty(producto.imagen)} ? 'https://via.placeholder.com/90x120?text=Libro' : ${producto.imagen}">
+                </div>
+
+                <div class="col-8">
+                  <div class="card-body px-2 pe-0">
+                    <h5 class="card-title" th:text="${producto.nombre}">Card title</h5>
+                    <p class="card-text text-truncate">This is a wider card with supporting text below</p>
+                    <p class="card-text fw-light mb-4">
+                      Precio: <span th:text="${#numbers.formatCurrency(producto.precio)}">X€</span>
                     </p>
+                    <div>
+                      <a class="btn disabled w-100" style="border-color: forestgreen; color: forestgreen">Vendido</a>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-10 mx-auto col-lg-5">
-                    <form class="p-4 p-md-4 border rounded-3 bg-light">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingEmail" placeholder=""/>
-                            <label for="floatingEmail">Correo electrónico</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPwd" placeholder=""/>
-                            <label for="floatingPwd">Contraseña</label>
-                        </div>
-
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" value="remember-me"/> Soy humano
-                            </label>
-                        </div>
-                        <button class="w-100 btn btn-lg btn-secondary" type="submit">
-                            Registrarme
-                        </button>
-                        <hr class="my-4"/>
-                        <small class="text-muted">Al hacer clic en Registrarme, aceptas las condiciones de uso.</small>
-                    </form>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+        <!-- LAST PRODUCT -->
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTER SECTION -->
+  <section id="subscribe">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+      <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+          <h4 class="display-4 fw-bold lh-1 mb-3">Benefíciate</h4>
+          <p class="col-lg-10 fs-4">
+            Registrate aquí mismo y descubre las ventajas de ser un nuevo usuario.
+          </p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+          <form class="p-4 p-md-4 border rounded-3 bg-light">
+            <div class="form-floating mb-3">
+              <input class="form-control" id="floatingEmail" placeholder="" type="email"/>
+              <label for="floatingEmail">Correo electrónico</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" id="floatingPwd" placeholder="" type="password"/>
+              <label for="floatingPwd">Contraseña</label>
+            </div>
+
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"/> Soy humano
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-secondary" type="submit">
+              Registrarme
+            </button>
+            <hr class="my-4"/>
+            <small class="text-muted">Al hacer clic en Registrarme, aceptas las condiciones de uso.</small>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 <div th:replace="~{fragments/footer}"></div>
 </body>

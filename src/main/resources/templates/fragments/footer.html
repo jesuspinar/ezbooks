@@ -1,16 +1,16 @@
-<footer class="py-3 my-4">
+<footer class="py-3 my-4" xmlns:sec="http://www.w3.org/1999/xhtml">
   <ul class="nav justify-content-center border-bottom pb-3 mb-3">
     <li class="nav-item">
       <a href="/" class="nav-link px-2 text-muted">Inicio</a>
     </li>
     <li class="nav-item">
-      <a href="/products" class="nav-link px-2 text-muted">Productos</a>
+      <a th:href="@{/public/libros}" class="nav-link px-2 text-muted">Productos</a>
     </li>
     <li class="nav-item">
-      <a href="/login" class="nav-link px-2 text-muted">Login</a>
+      <a th:href="@{/auth/login}" sec:authorize="!isAuthenticated()" class="nav-link px-2 text-muted">Login</a>
     </li>
     <li class="nav-item">
-      <a href="/register" class="nav-link px-2 text-muted">Registrar</a>
+      <a th:href="@{/auth/register}"sec:authorize="!isAuthenticated()" class="nav-link px-2 text-muted">Registrar</a>
     </li>
   </ul>
   <p class="text-center text-muted">&copy; 2023 Ezbooks S.L</p>

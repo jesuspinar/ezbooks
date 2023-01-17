@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>SecondHandMarket</title>
+  <meta th:replace="~{fragments/head}">
+</head>
+<body>
+<nav th:replace="~{fragments/navbar}"></nav>
+<!-- SEARCH SECTION -->
+<section class="container py-5 pb-4 " style="max-width: 440px">
+  <form class="d-flex">
+    <input class="form-control" name="q" placeholder="Título" th:value="${param.q}" type="text">
+    <button class="btn btn-secondary my-sm-0 mx-1" type="submit">Buscar</button>
+  </form>
+</section>
+<!-- RESULT QUERY SECTION -->
+<section class="py-2" id="#">
+  <div class="text-center">
+    <h4 class="display-6 fw-bold mb-4">Resultado</h4>
+    <div sec:authorize="!isAuthenticated()" class="d-flex align-items-center justify-content-center text-center text-muted mb-5">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#F27405" class="bi bi-info-circle-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+      <span class="px-1">Necesitas una cuenta para poder comprar</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row gap-2 gap-lg-3 g-2">
+
+      <div class="col" th:each="producto : ${productos}">
+        <div class="row justify-content-center">
+          <!-- ITEM CARD -->
+          <div class="card mb-3 panel-producto" style="max-width: 430px;">
+<!--            <a th:href="@{/public/producto/{id}(id=${producto.id})}"></a>-->
+            <div class="row g-0">
+
+              <div class="col-4 my-3 ps-0">
+                <img alt="Portada libro" class="card-img h-100" src=""
+                     th:src="${#strings.isEmpty(producto.imagen)} ? 'https://via.placeholder.com/90x120?text=Libro' : ${producto.imagen}">
+              </div>
+
+              <div class="col-8">
+                <div class="card-body px-2 pe-0">
+                  <h5 class="card-title" th:text="${producto.nombre}">Card title</h5>
+                  <p class="card-text text-truncate">This is a wider card with supporting text below</p>
+                  <p class="card-text fw-light mb-4">
+                    Precio: <span th:text="${#numbers.formatCurrency(producto.precio)}">X€</span>
+                  </p>
+                  <div sec:authorize="isAuthenticated()" th:if="${#authentication.name != producto.propietario.email}">
+                    <a class="btn btn-secondary w-100" th:href="@{/app/carrito/add/{id}(id=${producto.id})}">
+                      Comprar
+                    </a>
+                  </div>
+                  <div sec:authorize="!isAuthenticated()">
+                    <div>
+                      <a class="btn disabled w-100"
+                         style="border-color: #E24C27; color: white; background-color: #E24C27"
+                      >Comprar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- LAST PRODUCT -->
+
+
+    </div>
+  </div>
+</section>
+
+<footer th:replace="~{fragments/footer}"></footer>
+
+<!--<script type="text/javascript">-->
+<!--  $(document).ready(-->
+<!--    function() {-->
+<!--      $('.panel-producto').click(-->
+<!--        function() {-->
+<!--          window.location = $(this).parent().find("a")-->
+<!--            .attr("href");-->
+<!--          return false;-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+</body>
+</html>

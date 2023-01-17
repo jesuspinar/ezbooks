@@ -6,39 +6,41 @@
 </head>
 <body>
 <main class="container pt-4">
-    <!-- Todo: place logo img here -->
-    <div class="row justify-content-center py-5 mx-auto">
-      <div class="col" style="max-width: 430px;">
+  <!-- Todo: place logo img here -->
+  <div class="row justify-content-center py-5 mx-auto">
+    <div class="col" style="max-width: 430px;">
 
-        <form class="p-4 p-md-4 border rounded-3 bg-light">
-          <h4 class="fs-1 fw-bold lh-1 mb-4 text-center">Crear cuenta</h4>
+      <form class="p-4 p-md-4 border rounded-3 bg-light" id="registerForm"
+            method="POST" role="form" th:action="@{/auth/register}" th:object="${usuario}">
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingName" placeholder="" />
-            <label for="floatingName">Nombre</label>
-          </div>
+        <h4 class="fs-1 fw-bold lh-1 mb-4 text-center">Crear cuenta</h4>
 
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingEmail" placeholder="" />
-            <label for="floatingEmail">Correo electrónico</label>
-          </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" id="floatingName" placeholder="" th:field="*{nombre}" type="text"/>
+          <label for="floatingName">Nombre</label>
+        </div>
 
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPwd" placeholder="" />
-            <label for="floatingPwd">Contraseña</label>
-          </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" id="floatingEmail" placeholder="" th:field="*{email}" type="email"/>
+          <label for="floatingEmail">Correo electrónico</label>
+        </div>
 
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me" /> Soy humano
-            </label>
-          </div>
-          <button class="w-100 btn btn-lg btn-secondary" type="submit">
-            Continuar
-          </button>
-          <hr class="my-4" />
-          <small class="text-muted">Al hacer clic en Continuar, aceptas las condiciones de uso.</small>
-        </form>
+        <div class="form-floating mb-3">
+          <input class="form-control" id="floatingPwd" placeholder="" th:field="*{password}" type="password"/>
+          <label for="floatingPwd">Contraseña</label>
+        </div>
+
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"/> Soy humano
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-secondary" type="submit">
+          Continuar
+        </button>
+        <hr class="my-4"/>
+        <small class="text-muted">Al hacer clic en Continuar, aceptas las condiciones de uso.</small>
+      </form>
     </div>
   </div>
 </main>

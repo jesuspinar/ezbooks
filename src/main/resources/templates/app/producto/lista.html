@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ezbooks | Libros en venta</title>
+  <meta th:replace="~{fragments/head}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar}"></div>
+<main class="container mx-auto table-responsive">
+  <h1 class="display-5 fw-bold mt-4">Tus libros en venta</h1>
+  <h2 class="display-6" th:if="${#lists.isEmpty(misproductos)}">Aún no has publicado ningún producto...</h2>
+  <table class="table table-hover text-start" th:unless="${#lists.isEmpty(misproductos)}">
+    <thead class="table-header">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Autor</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="producto : ${misproductos}">
+      <td th:text="${producto.getId()}">id</td>
+      <td th:text="${producto.getNombre()}">nombre</td>
+      <td>autor</td>
+      <td th:text="${#numbers.formatCurrency(producto.precio)}">precio</td>
+      <td>
+        <!--    TODO:    <a class="mx-2" th:href="@{/app/misproductos/editar/{id}(id=${producto.id})}"><i class="fa-solid fa-pen-to-square"></i></a>-->
+        <a class="mx-2" th:href="@{/app/misproductos/eliminar/{id}(id=${producto.id})}"><i class="fa-solid fa-trash"></i></i></a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+</main>
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

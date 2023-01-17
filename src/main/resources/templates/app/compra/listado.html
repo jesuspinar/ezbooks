@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ezbooks | Transacciones</title>
+  <meta th:replace="~{fragments/head}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar}"></div>
+<main class="container mx-auto table-responsive">
+  <h1 class="display-5 fw-bold mt-4">Transacciones</h1>
+  <h2 class="display-6" th:if="${#lists.isEmpty(mis_compras)}">Aún no has comprado ningún producto ...</h2>
+  <table class="table table-hover text-start" th:unless="${#lists.isEmpty(mis_compras)}">
+    <thead class="table-header">
+    <tr>
+      <th>ID</th>
+      <th>Comprador</th>
+      <th>Vendedor</th>
+      <th>Libro</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="compra : ${mis_compras}">
+      <td th:text="${compra.id}">id</td>
+      <td th:text="${compra.getPropietario().getNombre()}">comprador</td>
+      <td>vendedor</td>
+      <!-- <td th:text="${compra.getLibros()}">vendedor</td> -->
+      <td>libro</td>
+      <!-- <td th:text="${compra.getTotal()}">vendedor</td> -->
+      <td>total</td>
+      <td><a th:href="@{/app/compra/factura/{id}(id=${compra.id})}">Ver factura</a></td>
+      <!--      <td th:text="${compra.getTotal()}">total</td>-->
+    </tr>
+    </tbody>
+  </table>
+</main>
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

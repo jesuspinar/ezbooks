@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>SecondHandMarket</title>
+  <meta th:replace="~{fragments/head}">
+
+</head>
+<body>
+<nav th:replace="~{fragments/navbar}"></nav>
+
+<main class="container mx-auto" style="max-width: 850px">
+  <h1 class="display-6 mt-3">Factura Nº<span th:text="${compra.id}"></span></h1>
+  <hr>
+  <div class="row mb-4">
+    <div class="col">
+      <strong>Comprado por:</strong>
+      <address>
+        <span th:text="${compra.propietario.nombre + ' ' + compra.propietario.apellidos}"></span><br>
+        <span th:text="${compra.propietario.email}"></span>
+      </address>
+    </div>
+    <div class="col ">
+      <strong>Fecha de compra:</strong>
+      <address>
+        <span th:text="${#dates.format(compra.fechaCompra,'dd MMMM yyyy - HH:mm')}"></span><br>
+      </address>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h3 class="fw-bold">Listado de productos</h3>
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <td><strong>Producto</strong></td>
+          <td><strong>Precio</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producto : ${productos}">
+          <td><span th:text="${producto.nombre}">Producto</span></td>
+          <td><span th:text="${#numbers.formatCurrency(producto.precio)}"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><span th:text="${#numbers.formatCurrency(total_compra)}"></span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</body>
+</html>
