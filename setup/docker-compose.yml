@@ -1,0 +1,17 @@
+version: "3"
+services:
+  ezbooks-mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=secure
+      - MYSQL_DATABASE=ezbooks-db
+      - MYSQL_USER=admin
+      - MYSQL_MYSQL_PASSWORD=admin
+    volumes:
+      - ezbooks-mysql:/var/lib/mysql
+
+volumes:
+  ezbooks-mysql:
+
+ports:
+ - 33060:3306

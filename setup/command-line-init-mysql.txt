@@ -1,0 +1,1 @@
+docker run --name ezbooks-mysql -e MYSQL_ROOT_PASSWORD=secure -e MYSQL_ROOT_PASSWORD=secure -v $HOME/mysql-data:/var/lib/mysql -d mysql:8.0 -p 33060:3306
