@@ -29,7 +29,7 @@ Ahora creamos un contenedor para MySQL.
 - Mirar creación contenedor redis arriba
 - Ejecuta el comando 
 ```bash
-docker run -p 3306:3306 --name mysql-ezbooks -e MYSQL_ROOT_PASSWORD=secure -e MYSQL_ROOT_PASSWORD=secure -v $HOME/mysql-data:/var/lib/mysql -d mysql:8.0
+docker run -p 3306:3306 --name mysql-ezbooks -e MYSQL_ROOT_PASSWORD=secure -v $HOME/mysql-data:/var/lib/mysql -d mysql:8.0
 ```
 
 
