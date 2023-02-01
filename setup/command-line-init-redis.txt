@@ -1,0 +1,1 @@
+docker run -p 9323:6379 --name redis-ezbooks -v $HOME/redis-data:/var/lib/redis -d redis:latest

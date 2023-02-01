@@ -17,7 +17,21 @@ Nota: si al clonar este repositorio te encuentras el error de Webserlet, es que 
 
 Ahora creamos un contenedor docker para redis.
 - Instala docker para escritorio
-- Ejecuta el comando `docker run -p 9323:6379 --name redis-ezbooks -d redis:latest`
+- Ejecuta el comando 
+```bash
+ docker run -p 9323:6379 --name redis-ezbooks -v $HOME/redis-data:/var/lib/redis -d redis:latest
+```
+## Configuracion del proyecto en producción
+Para el modo producción usamos la base de datos MySQL junto con el almacenamiento de sesines en redis en dos contenedores de docker .
+
+Ahora creamos un contenedor para MySQL.
+- Instala docker para escritorio
+- Mirar creación contenedor redis arriba
+- Ejecuta el comando 
+```bash
+docker run -p 3306:3306 --name mysql-ezbooks -e MYSQL_ROOT_PASSWORD=secure -e MYSQL_ROOT_PASSWORD=secure -v $HOME/mysql-data:/var/lib/mysql -d mysql:8.0
+```
+
 
 ## Vista previa interfaz
 Para [demo click aquí!](https://jesuspinar.github.io/ezbooks-ui/)
