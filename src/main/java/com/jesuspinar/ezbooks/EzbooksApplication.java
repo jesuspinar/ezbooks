@@ -21,6 +21,7 @@ public class EzbooksApplication {
 		SpringApplication.run(EzbooksApplication.class, args);
 	}
 
+	/* //FOR H2 DEVELOPMENT
 	@Bean
 	public CommandLineRunner initData(UsuarioServicio usuarioServicio, ProductoServicio productoServicio) {
 		return args -> {
@@ -45,6 +46,7 @@ public class EzbooksApplication {
 
 		};
 	}
+	*/
 	
 	/**
 	 * Este bean se inicia al lanzar la aplicación. Nos permite inicializar el almacenamiento
