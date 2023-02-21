@@ -41,7 +41,18 @@
               <div class="col-8">
                 <div class="card-body px-2 pe-0">
                   <h5 class="card-title" th:text="${producto.nombre}">Card title</h5>
-                  <p class="card-text text-truncate">This is a wider card with supporting text below</p>
+                  <p class="card-text text-truncate mb-1">
+                    <span th:if="${producto.getDescripcion() != null}" th:text="${producto.getDescripcion()}"></span>
+                    <span th:unless="${producto.getDescripcion() != null}">Dicta et sint incidunt temporibus ab voluptatem</span>
+                  </p>
+                  <p class="card-text mb-1">
+                    <span th:if="${producto.getAutor() != null}" th:text="${producto.getAutor()}"></span>
+                    <span th:unless="${producto.getAutor() != null}">Anónimo</span>
+                  </p>
+                  <p class="card-text mb-1">
+                    <span th:if="${producto.getGenero() != null}" th:text="${producto.getGenero()}"></span>
+                    <span th:unless="${producto.getGenero() != null}">Otro</span>
+                  </p>
                   <p class="card-text fw-light mb-4">
                     Precio: <span th:text="${#numbers.formatCurrency(producto.precio)}">X€</span>
                   </p>
