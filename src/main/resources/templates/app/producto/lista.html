@@ -15,6 +15,7 @@
       <th>ID</th>
       <th>Nombre</th>
       <th>Autor</th>
+      <th>Genero</th>
       <th>Precio</th>
       <th>Acciones</th>
     </tr>
@@ -24,7 +25,14 @@
     <tr th:each="producto : ${misproductos}">
       <td th:text="${producto.getId()}">id</td>
       <td th:text="${producto.getNombre()}">nombre</td>
-      <td>autor</td>
+      <td>
+        <span th:if="${producto.getAutor() != null}" th:text="${producto.getAutor()}"></span>
+        <span th:unless="${producto.getAutor() != null}">Anónimo</span>
+      </td>
+      <td>
+        <span th:if="${producto.getGenero() != null}" th:text="${producto.getGenero()}"></span>
+        <span th:unless="${producto.getGenero() != null}">Otro</span>
+      </td>
       <td th:text="${#numbers.formatCurrency(producto.precio)}">precio</td>
       <td>
         <!--    TODO:    <a class="mx-2" th:href="@{/app/misproductos/editar/{id}(id=${producto.id})}"><i class="fa-solid fa-pen-to-square"></i></a>-->

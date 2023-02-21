@@ -21,24 +21,24 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="autor">Autor</label>
-          <input type="text" class="form-control" id="autor"/>
+          <input type="text" class="form-control" id="autor" th:field="*{autor}"/>
         </div>
       </div>
       <div class="col-lg">
         <label for="descripcion" class="form-label">Descripcion</label>
-        <textarea class="form-control" id="descripcion" rows="4" style="resize: none"></textarea>
+        <textarea class="form-control" id="descripcion" rows="4" th:field="*{descripcion}" style="resize: none"></textarea>
       </div>
     </div>
 
     <div class="row">
       <div class="col mb-3">
         <label class="form-label" for="editorial">Editorial</label>
-        <input type="text" class="form-control mb-3" id="editorial"/>
+        <input type="text" class="form-control mb-3" th:field="*{editorial}" id="editorial"/>
       </div>
 
       <div class="col mb-3">
         <label class="form-label" for="genero">Genero</label>
-        <input type="text" class="form-control" id="genero"/>
+        <input type="text" class="form-control" th:field="*{genero}" id="genero"/>
       </div>
     </div>
 

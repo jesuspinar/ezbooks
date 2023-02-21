@@ -12,8 +12,13 @@ public class Producto {
 	@Id @GeneratedValue
 	private long id;
 	
-	private String nombre; 
-	
+	private String nombre;
+	private String descripcion;
+	private String autor;
+
+	private String genero;
+	private String editorial;
+
 	private float precio;
 	
 	private String imagen; 
@@ -28,6 +33,19 @@ public class Producto {
 
 	public Producto(String nombre, float precio, String imagen, Usuario propietario) {
 		this.nombre = nombre;
+		this.precio = precio;
+		this.imagen = imagen;
+		this.propietario = propietario;
+	}
+
+	public Producto(long id, String nombre, String descripcion, String autor,
+					String genero, String editorial, float precio, String imagen, Usuario propietario) {
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.autor = autor;
+		this.genero = genero;
+		this.editorial = editorial;
 		this.precio = precio;
 		this.imagen = imagen;
 		this.propietario = propietario;
@@ -80,6 +98,38 @@ public class Producto {
 
 	public void setCompra(Compra compra) {
 		this.compra = compra;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getEditorial() {
+		return editorial;
+	}
+
+	public void setEditorial(String editorial) {
+		this.editorial = editorial;
 	}
 
 	@Override
