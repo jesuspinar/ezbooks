@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Autor`
+-- Table structure for table `autor`
 --
 
-CREATE TABLE `Autor` (
+CREATE TABLE `autor` (
   `idAutor` int(11) NOT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `apellidos` varchar(80) DEFAULT NULL
@@ -35,10 +35,10 @@ CREATE TABLE `Autor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Direcciones`
+-- Table structure for table `direcciones`
 --
 
-CREATE TABLE `Direcciones` (
+CREATE TABLE `direcciones` (
   `idDirecciones` int(11) NOT NULL,
   `calle` varchar(65) DEFAULT NULL,
   `ciudad` varchar(65) DEFAULT NULL,
@@ -50,10 +50,10 @@ CREATE TABLE `Direcciones` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Editorial`
+-- Table structure for table `editorial`
 --
 
-CREATE TABLE `Editorial` (
+CREATE TABLE `editorial` (
   `idEditorial` int(11) NOT NULL,
   `nombre` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -61,10 +61,10 @@ CREATE TABLE `Editorial` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Genero`
+-- Table structure for table `genero`
 --
 
-CREATE TABLE `Genero` (
+CREATE TABLE `genero` (
   `idGenero` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -72,10 +72,10 @@ CREATE TABLE `Genero` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Libro`
+-- Table structure for table `libro`
 --
 
-CREATE TABLE `Libro` (
+CREATE TABLE `libro` (
   `idLibro` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `titulo` varchar(65) DEFAULT NULL,
@@ -91,10 +91,10 @@ CREATE TABLE `Libro` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Log`
+-- Table structure for table `log`
 --
 
-CREATE TABLE `Log` (
+CREATE TABLE `log` (
   `idLog` int(11) NOT NULL,
   `fecha_hora` datetime NOT NULL,
   `idUsuario` int(11) NOT NULL
@@ -103,10 +103,10 @@ CREATE TABLE `Log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Rol`
+-- Table structure for table `rol`
 --
 
-CREATE TABLE `Rol` (
+CREATE TABLE `rol` (
   `idRol` int(11) NOT NULL,
   `permisos` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -114,10 +114,10 @@ CREATE TABLE `Rol` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Transaccion`
+-- Table structure for table `transaccion`
 --
 
-CREATE TABLE `Transaccion` (
+CREATE TABLE `transaccion` (
   `idTransaccion` int(11) NOT NULL,
   `idLibro` int(11) NOT NULL,
   `precio` decimal(4,2) NOT NULL,
@@ -130,10 +130,10 @@ CREATE TABLE `Transaccion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Usuario`
+-- Table structure for table `usuario`
 --
 
-CREATE TABLE `Usuario` (
+CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
@@ -148,56 +148,56 @@ CREATE TABLE `Usuario` (
 --
 
 --
--- Indexes for table `Autor`
+-- Indexes for table `autor`
 --
-ALTER TABLE `Autor`
+ALTER TABLE `autor`
   ADD PRIMARY KEY (`idAutor`);
 
 --
--- Indexes for table `Direcciones`
+-- Indexes for table `direcciones`
 --
-ALTER TABLE `Direcciones`
+ALTER TABLE `direcciones`
   ADD PRIMARY KEY (`idDirecciones`);
 
 --
--- Indexes for table `Editorial`
+-- Indexes for table `editorial`
 --
-ALTER TABLE `Editorial`
+ALTER TABLE `editorial`
   ADD PRIMARY KEY (`idEditorial`);
 
 --
--- Indexes for table `Genero`
+-- Indexes for table `genero`
 --
-ALTER TABLE `Genero`
+ALTER TABLE `genero`
   ADD PRIMARY KEY (`idGenero`);
 
 --
--- Indexes for table `Libro`
+-- Indexes for table `libro`
 --
-ALTER TABLE `Libro`
+ALTER TABLE `libro`
   ADD PRIMARY KEY (`idLibro`),
   ADD KEY `fk_Libro_Editorial1_idx` (`idEditorial`),
-  ADD KEY `fk_Libro_Autor1_idx` (`idAutor`),
+  ADD KEY `fk_Libro_autor1_idx` (`idAutor`),
   ADD KEY `fk_Libro_Genero1_idx` (`idGenero`),
   ADD KEY `fk_Libro_Usuario1_idx` (`idUsuario`);
 
 --
--- Indexes for table `Log`
+-- Indexes for table `log`
 --
-ALTER TABLE `Log`
+ALTER TABLE `log`
   ADD PRIMARY KEY (`idLog`),
   ADD KEY `fk_Log_Usuario1_idx` (`idUsuario`);
 
 --
--- Indexes for table `Rol`
+-- Indexes for table `rol`
 --
-ALTER TABLE `Rol`
+ALTER TABLE `rol`
   ADD PRIMARY KEY (`idRol`);
 
 --
--- Indexes for table `Transaccion`
+-- Indexes for table `transaccion`
 --
-ALTER TABLE `Transaccion`
+ALTER TABLE `transaccion`
   ADD PRIMARY KEY (`idTransaccion`),
   ADD KEY `fk_Transaccion_Libro1_idx` (`idLibro`,`precio`),
   ADD KEY `fk_Transaccion_Usuario1_idx` (`idUsuarioComprador`,`idDireccionComprador`),
@@ -206,9 +206,9 @@ ALTER TABLE `Transaccion`
   ADD KEY `idDireccionVendedor` (`idDireccionVendedor`);
 
 --
--- Indexes for table `Usuario`
+-- Indexes for table `usuario`
 --
-ALTER TABLE `Usuario`
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`),
   ADD KEY `fk_Usuario_Direcciones` (`idDirecciones`),
   ADD KEY `fk_Usuario_Rol1` (`idRol`);
@@ -218,45 +218,45 @@ ALTER TABLE `Usuario`
 --
 
 --
--- AUTO_INCREMENT for table `Autor`
+-- AUTO_INCREMENT for table `autor`
 --
-ALTER TABLE `Autor`
+ALTER TABLE `autor`
   MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Direcciones`
+-- AUTO_INCREMENT for table `direcciones`
 --
-ALTER TABLE `Direcciones`
+ALTER TABLE `direcciones`
   MODIFY `idDirecciones` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Editorial`
+-- AUTO_INCREMENT for table `editorial`
 --
-ALTER TABLE `Editorial`
+ALTER TABLE `editorial`
   MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Genero`
+-- AUTO_INCREMENT for table `genero`
 --
-ALTER TABLE `Genero`
+ALTER TABLE `genero`
   MODIFY `idGenero` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Libro`
+-- AUTO_INCREMENT for table `libro`
 --
-ALTER TABLE `Libro`
+ALTER TABLE `libro`
   MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Rol`
+-- AUTO_INCREMENT for table `rol`
 --
-ALTER TABLE `Rol`
+ALTER TABLE `rol`
   MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Transaccion`
+-- AUTO_INCREMENT for table `transaccion`
 --
-ALTER TABLE `Transaccion`
+ALTER TABLE `transaccion`
   MODIFY `idTransaccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -264,36 +264,36 @@ ALTER TABLE `Transaccion`
 --
 
 --
--- Constraints for table `Libro`
+-- Constraints for table `libro`
 --
-ALTER TABLE `Libro`
-  ADD CONSTRAINT `fk_Libro_Autor1` FOREIGN KEY (`idAutor`) REFERENCES `Autor` (`idAutor`),
-  ADD CONSTRAINT `fk_Libro_Editorial1` FOREIGN KEY (`idEditorial`) REFERENCES `Editorial` (`idEditorial`),
-  ADD CONSTRAINT `fk_Libro_Genero1` FOREIGN KEY (`idGenero`) REFERENCES `Genero` (`idGenero`),
-  ADD CONSTRAINT `fk_Libro_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario` (`idUsuario`);
+ALTER TABLE `libro`
+  ADD CONSTRAINT `fk_Libro_autor1` FOREIGN KEY (`idAutor`) REFERENCES `autor` (`idAutor`),
+  ADD CONSTRAINT `fk_Libro_Editorial1` FOREIGN KEY (`idEditorial`) REFERENCES `editorial` (`idEditorial`),
+  ADD CONSTRAINT `fk_Libro_Genero1` FOREIGN KEY (`idGenero`) REFERENCES `genero` (`idGenero`),
+  ADD CONSTRAINT `fk_Libro_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
--- Constraints for table `Log`
+-- Constraints for table `log`
 --
-ALTER TABLE `Log`
-  ADD CONSTRAINT `fk_Log_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario` (`idUsuario`);
+ALTER TABLE `log`
+  ADD CONSTRAINT `fk_Log_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
--- Constraints for table `Transaccion`
+-- Constraints for table `transaccion`
 --
-ALTER TABLE `Transaccion`
-  ADD CONSTRAINT `transaccion_ibfk_3` FOREIGN KEY (`idLibro`) REFERENCES `Libro` (`idLibro`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaccion_ibfk_4` FOREIGN KEY (`idUsuarioComprador`) REFERENCES `Usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaccion_ibfk_5` FOREIGN KEY (`idUsuarioVendedor`) REFERENCES `Usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaccion_ibfk_6` FOREIGN KEY (`idDireccionComprador`) REFERENCES `Usuario` (`idDirecciones`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaccion_ibfk_7` FOREIGN KEY (`idDireccionVendedor`) REFERENCES `Usuario` (`idDirecciones`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `transaccion`
+  ADD CONSTRAINT `transaccion_ibfk_3` FOREIGN KEY (`idLibro`) REFERENCES `libro` (`idLibro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaccion_ibfk_4` FOREIGN KEY (`idUsuarioComprador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaccion_ibfk_5` FOREIGN KEY (`idUsuarioVendedor`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaccion_ibfk_6` FOREIGN KEY (`idDireccionComprador`) REFERENCES `usuario` (`idDirecciones`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaccion_ibfk_7` FOREIGN KEY (`idDireccionVendedor`) REFERENCES `usuario` (`idDirecciones`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Usuario`
+-- Constraints for table `usuario`
 --
-ALTER TABLE `Usuario`
-  ADD CONSTRAINT `fk_Usuario_Direcciones` FOREIGN KEY (`idDirecciones`) REFERENCES `Direcciones` (`idDirecciones`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Usuario_Rol1` FOREIGN KEY (`idRol`) REFERENCES `Rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `fk_Usuario_Direcciones` FOREIGN KEY (`idDirecciones`) REFERENCES `direcciones` (`idDirecciones`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Usuario_Rol1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
