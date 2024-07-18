@@ -32,9 +32,5 @@ Ahora creamos un contenedor para MySQL.
 docker run -p 3306:3306 --name mysql-ezbooks -e MYSQL_ROOT_PASSWORD=secure -v $HOME/mysql-data:/var/lib/mysql -d mysql:8.0
 ```
 
-
-## Vista previa interfaz
-Para [demo click aquí!](https://jesuspinar.github.io/ezbooks-ui/)
-
 ## Licencia 
 Privativa.
